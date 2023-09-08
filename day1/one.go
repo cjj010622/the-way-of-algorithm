@@ -1,5 +1,7 @@
 package day1
 
+//合并两个有序数组
+
 func merge(nums1 []int, m int, nums2 []int, n int) {
 	res := make([]int, 0, m+n)
 	p1, p2 := 0, 0
