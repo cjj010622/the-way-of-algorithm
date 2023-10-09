@@ -1,6 +1,8 @@
 package day33
 
-import "github.com/emirpasic/gods/trees/redblacktree"
+import (
+	"github.com/emirpasic/gods/trees/redblacktree"
+)
 
 /*
 给你一支股票价格的数据流。数据流中每一条记录包含一个 时间戳 和该时间点股票对应的 价格 。
