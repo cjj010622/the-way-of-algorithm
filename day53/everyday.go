@@ -7,39 +7,18 @@ import (
 )
 
 /*
-给你一个整数数组 gifts ，表示各堆礼物的数量。每一秒，你需要执行以下操作：
+给你一个整数数组 citations ，其中 citations[i] 表示研究者的第 i 篇论文被引用的次数。计算并返回该研究者的 h 指数。
 
-选择礼物数量最多的那一堆。
-如果不止一堆都符合礼物数量最多，从中选择任一堆即可。
-选中的那一堆留下平方根数量的礼物（向下取整），取走其他的礼物。
-返回在 k 秒后剩下的礼物数量。
+根据维基百科上 h 指数的定义：h 代表“高引用次数” ，一名科研人员的 h 指数 是指他（她）至少发表了 h 篇论文，并且每篇论文 至少 被引用 h 次。如果 h 有多种可能的值，h 指数 是其中最大的那个。
 */
 
-func pickGifts(gifts []int, k int) int64 {
-	h := &hp{gifts}
-	heap.Init(h)
-	for ; k > 0; k-- {
-		gifts[0] = int(math.Sqrt(float64(gifts[0])))
-		heap.Fix(h, 0)
-	}
-	var ans int64
-	for _, x := range gifts {
-		ans += int64(x)
-	}
-	return ans
-}
-
-type hp struct {
-	sort.IntSlice
-}
-
-func (h hp) Less(i, j int) bool {
-	return h.IntSlice[i] > h.IntSlice[j]
-}
-
-func (h hp) Pop() (_ any) {
-	return
-}
-
-func (h hp) Push(any) {
+func hIndex(citations []int) int {
+    sort.Ints(citations)
+    n:=len(citations)
+    for h:=n;h>0;h--{
+        if citations[n-h]>=h{
+            return h
+        }
+    }
+    return 0
 }
